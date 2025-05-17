@@ -1,4 +1,11 @@
+terraform {
+  backend "s3" {
+    bucket         = "s306022024"
+    key            = "terraform.tfstate"
+    region         = "us-east-1"
+  }
+}
 
-resource "aws_s3_bucket" "example" {
-  bucket = var.bucket_name
+provider "aws" {
+  region = var.aws_region
 }
