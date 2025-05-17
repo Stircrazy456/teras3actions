@@ -12,7 +12,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Configure AWS credentials
+    - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v3
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -30,8 +30,11 @@ jobs:
     - name: Validate Terraform configuration
       run: terraform validate
 
+    - name: Import S3 Bucket (If Needed)
+      run: terraform import aws_s3_bucket.example ${{ secrets.BUCKET_NAME }}
+
     - name: Plan Terraform destruction
-      run: terraform plan -destroy -out=tfplan -var="bucket_name=qwieubqwjisefie"
+      run: terraform plan -destroy -out=tfplan -var="bucket_name=${{ secrets.BUCKET_NAME }}"
 
     - name: Apply Terraform destruction
       run: terraform apply --auto-approve tfplan
