@@ -18,6 +18,3 @@ variable "s3_bucket_name" {
   default = "tfdemo16112023sdfad"
 }
 
-variable "name" {
-  description = "Name of EC2 Intance"
-}
