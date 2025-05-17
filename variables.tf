@@ -18,3 +18,6 @@ variable "s3_bucket_name" {
   default = "tfdemo16112023sdfad"
 }
 
+variable "bucket_name" {
+  type = string
+}
